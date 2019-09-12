@@ -3,20 +3,35 @@ import webbrowser
 import requests
 import socket
 import time
+import sys
 
 HOST = input("Enter IP-address or hit 'Enter' for default address: ")
 if HOST == "":
-    HOST = "152.96.214.132"
+    HOST = "127.0.0.1"
 PORT = 9991
 
 with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
     s.connect((HOST, PORT))
     #s.sendall(bytes(','.join(coordinate_list), 'utf-8'))
     lengh = s.recv(100)
-    print(int(lengh.decode("utf-8")))
-    data = s.recv(int(lengh.decode("utf-8")))
+    print('expecting: '+lengh.decode("utf-8"))
+    
+    receivedEverything = False
+    tries = 0
+    while(not receivedEverything):
+        data = s.recv(int(lengh.decode("utf-8")))
+        print('received: '+str(len(data)))
+        if int(len(data)) == int(lengh.decode("utf-8")):
+            receivedEverything = True
+            s.sendall(bytes('ok', 'utf-8'))
+            print('received everything')
+        else:
+            s.sendall(bytes('try again', 'utf-8'))
+        tries += 1
+        if(tries == 5):
+            print('could not receive expected amount of data')
+            sys.exit(1)
 
-print('Received data from Server')
 coordinate_list = data.decode("utf-8").split(',')
 
 #display info about list and select start position in list
