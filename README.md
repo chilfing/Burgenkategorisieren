@@ -7,6 +7,8 @@ This project might work with other versions too but wasn't tested with any other
 
 change the IP Adress in "burgenServer.py" to your own at "LOCALHOST = 127.0.0.1"
 change the IP Adress in "brugenClient.py to your own at "HOST = 127.0.0.1" to set it as the default
+
+run: pip install requests
 ```
 
 ## How to Run:
