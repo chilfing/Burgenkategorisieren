@@ -1,15 +1,15 @@
 # Castles and Medieval Towers
 
 ## Setup:
-```
+
 Install python 3.7 and Java 1.8.0_202
 This project might work with other versions too but wasn't tested with any other
 
 change the IP Adress in "burgenServer.py" to your own at "LOCALHOST = 127.0.0.1"
 change the IP Adress in "brugenClient.py to the one of the server at "HOST = 127.0.0.1" to set it as the default
 
-run: pip install requests
-```
+run: ```pip install requests```
+
 
 ## How to Run:
 To start run ```burgenZaehlen.py```. 
